@@ -17,12 +17,12 @@
     Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/baloncesto","user", "user");
     Statement s = conexion.createStatement();
 
-    ResultSet listado = s.executeQuery ("SELECT * FROM socio where socio.id");
+    ResultSet listado = s.executeQuery ("SELECT * FROM socio where socio.socioID = numero");
 %>
 <table>
     <tr><th>Código</th><th>Nombre</th><th>Estatura</th><th>Edad</th><th>Localidad</th></tr>
     <%
-
+            if(){
             out.println("<tr><td>");
             out.println(listado.getString("socioID") + "</td>");
             out.println("<td>" + listado.getString("nombre") + "</td>");
@@ -32,7 +32,7 @@
     %>
 
     <%
-
+        }
         conexion.close();
     %>
 </table>

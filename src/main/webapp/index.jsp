@@ -10,7 +10,7 @@
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 <br>
-<a href="mostrarSocio.jsp">Muestra Socio</a>
+<a href="mostrarSocio.jsp">Muestra Socio (Hecho)</a>
 <br>
 <a href="listadoSocios.jsp">Listado de Socios</a>
 <br>

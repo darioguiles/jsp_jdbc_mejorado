@@ -10,7 +10,9 @@
       <link rel="stylesheet" type="text/css" href="estilos.css" />
   </head>
   <body>
-    <%
+  <a href="index.jsp">Volver atrás</a>
+
+  <%
       Class.forName("com.mysql.cj.jdbc.Driver");
       Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/baloncesto","user", "user");
       Statement s = conexion.createStatement();

@@ -17,6 +17,12 @@
 <a href="formularioSocio.jsp">Fomulario de Socio Nuevo (Hecho)</a>
 <br>
 <a href="pideNumeroSocio.jsp">Listado de Socios (Borrar)</a>
+<br>
+<a href="añadirEntreno.jsp">Formulario de entreno</a>
+<br>
+<a href="listadoEntreno.jsp">Listado de Entrenos(Borrar)</a>
+
+
 
 </body>
 </html>

@@ -92,6 +92,16 @@ INSERT INTO `socio` (`socioID`, `nombre`, `estatura`, `edad`, `localidad`) VALUE
 (1301, 'Naranjo González, David', 196, 22, 'Campanillas'),
 (1302, 'Robledo Salazar, Ángel Antonio', 166, 23, 'Campanillas');
 
+
+CREATE TABLE IF NOT EXISTS `entrenamiento` (
+                                       `entrenoID` int(11) NOT NULL AUTO_INCREMENT,
+                                       `tipoEntreno` varchar(30) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                                       `ubicacion` varchar(30) DEFAULT NULL,
+                                       `fecha` DATE COLLATE utf8_spanish2_ci DEFAULT NULL,
+                                       PRIMARY KEY (`entrenoID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+-- INSERT INTO `entrenamiento` (`entrenoID`, `tipoEntreno`, `ubicacion`, `fecha`) VALUES
+-- (1, 'fuerza', 'Málaga', 'Martes 23 de Noviembre de 2024' );
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -20,7 +20,7 @@
 </select>
     </br>
     Ubicacion <input type="text" name="ubi"/></br>
-    Fecha <input type="date" name="fecha"/></br>
+    Fecha <input type="text" name="fecha"/></br>
     <input type="submit" value="Aceptar">
 </form>
 <%

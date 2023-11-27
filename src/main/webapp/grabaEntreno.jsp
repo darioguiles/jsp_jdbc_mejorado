@@ -1,7 +1,6 @@
 <%@page import="java.sql.*" %>
 <%@page import="java.util.Objects" %>
 <%@ page import="java.io.IOException" %>
-<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -15,48 +14,41 @@
     int numero = -1;
     String tipoEntreno = null;
     String ubicacion = null;
-    Date fecha = null;
+    String fecha = null;
     //Booleanos que controlan flags de nuestro formulario, así controlamos excepciones y damos un mensaje de error en session.
     boolean flagValidaNum = false;
     boolean flagUbicacionNull= false;
     boolean flagUbicacionBlank = false;
-    boolean flagValidaFecha = false;
-
+    boolean flagValidaFechaNull = false;
+    boolean flagValidaFechaBlank = false;
+    boolean flagValidaTipoEntrenoNull = false;
+    boolean flagValidaTipoEntrenoBlank = false;
 
     try {
         numero = Integer.parseInt(request.getParameter("numero"));
         flagValidaNum = true;
 
-        //Falta que hagamos el select de entrenamiento
-
-        //UTILIZO LOS CONTRACTS DE LA CLASE Objects PARA LA VALIDACIÓN
-        //             v---- LANZA NullPointerException SI EL PARÁMETRO ES NULL
         Objects.requireNonNull(request.getParameter("ubi"));
         flagUbicacionNull=true;
-        //CONTRACT nonBlank..
-        //UTILIZO isBlank SOBRE EL PARÁMETRO DE TIPO String PARA CHEQUEAR QUE NO ES UN PARÁMETRO VACÍO "" NI CADENA TODO BLANCOS "    "
-        //          |                                EN EL CASO DE QUE SEA BLANCO LO RECIBIDO, LANZO UNA EXCEPCIÓN PARA INVALIDAR EL PROCESO DE VALIDACIÓN
-        //          -------------------------v                      v---------------------------------------|
+
         if (request.getParameter("ubi").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
         flagUbicacionBlank=true;
         ubicacion = request.getParameter("ubi");
 
+        //Validacion de tipoEntreno
+        Objects.requireNonNull(request.getParameter("tipoEntreno"));
+        flagValidaTipoEntrenoNull=true;
 
-        estatura = Integer.parseInt(request.getParameter("estatura"));
-        flagValidaEstatura = true;
-        edad = Integer.parseInt(request.getParameter("edad"));
-        flagValidaEdad = true;
-        //UTILIZO LOS CONTRACTS DE LA CLASE Objects PARA LA VALIDACIÓN
-        //             v---- LANZA NullPointerException SI EL PARÁMETRO ES NULL
-        Objects.requireNonNull(request.getParameter("localidad"));
-        flagValidaLocalidadNull = true;
-        //CONTRACT nonBlank
-        //UTILIZO isBlank SOBRE EL PARÁMETRO DE TIPO String PARA CHEQUEAR QUE NO ES UN PARÁMETRO VACÍO "" NI CADENA TODO BLANCOS "    "
-        //          |                                EN EL CASO DE QUE SEA BLANCO LO RECIBIDO, LANZO UNA EXCEPCIÓN PARA INVALIDAR EL PROCESO DE VALIDACIÓN
-        //          -------------------------v                      v---------------------------------------|
-        if (request.getParameter("localidad").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
-        flagValidaLocalidadBlank = true;
-        localidad = request.getParameter("localidad");
+        if (request.getParameter("tipoEntreno").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
+        flagValidaTipoEntrenoBlank = true;
+        tipoEntreno = request.getParameter("tipoEntreno");
+
+        Objects.requireNonNull(request.getParameter("fecha"));
+        flagValidaFechaNull = true;
+
+        if (request.getParameter("fecha").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
+        flagValidaFechaBlank = true;
+        fecha = request.getParameter("fecha");
 
     } catch (Exception ex) {
         ex.printStackTrace();
@@ -64,23 +56,18 @@
 
         if (!flagValidaNum)
         {
-            session.setAttribute("error","Error en número");
+            session.setAttribute("errorEntreno","Error en número");
         }
         else if (!flagUbicacionNull || !flagUbicacionBlank)
         {
-            session.setAttribute("error","Error en nombre, campo vacío o todo espacio blanco");
+            session.setAttribute("errorEntreno","Error en ubicacion, campo vacío o todo espacio blanco");
         }
-        else if (!flagValidaEstatura)
-        {
-            session.setAttribute("error","Error en estatura");
+        else if (!flagValidaTipoEntrenoNull || !flagValidaTipoEntrenoBlank) {
+            session.setAttribute("errorEntreno", "Error en tipo de entrenamiento, campo vacío o no seleccionado");
         }
-        else if (!flagValidaEdad)
+        else if (!flagValidaFechaNull || !flagValidaFechaBlank)
         {
-            session.setAttribute("error","Error en edad");
-        }
-        else if (!flagValidaLocalidadNull || !flagValidaLocalidadBlank)
-        {
-            session.setAttribute("error","Error en localidad, campo vacío o todo espacio blanco");
+            session.setAttribute("errorEntreno","Error en fecha, campo vacío o todo espacio blanco");
         }
 
     }
@@ -114,19 +101,17 @@
                     "?, " + //entrenoID
                     "?, " + //tipoEntreno
                     "?, " + //ubicacion
-                    "?, " + //edad
-                    "?)"; //localidad
+                    "?)"; //fecha
 
             ps = conn.prepareStatement(sql);
             int idx = 1;
             ps.setInt(idx++, numero);
-            ps.setString(idx++, nombre);
-            ps.setInt(idx++, estatura);
-            ps.setInt(idx++, edad);
-            ps.setString(idx++, localidad);
+            ps.setString(idx++, tipoEntreno);
+            ps.setString(idx++, ubicacion);
+            ps.setString(idx++, fecha);
 
             int filasAfectadas = ps.executeUpdate();
-            System.out.println("SOCIOS GRABADOS:  " + filasAfectadas);
+            System.out.println("Entrenamiento GRABADO:  " + filasAfectadas);
 
 
         } catch (Exception ex) {
@@ -143,13 +128,11 @@
             } catch (Exception e) { /* Ignored */ }
         }
 
-        //out.println("Socio dado de alta.")
-        session.setAttribute("idNuevoSocio", numero);
-        response.sendRedirect("mostrarSocio2.jsp");
+        out.println("Entrenamiento creado.");
     } else {
         //out.println("Error de validación!");
         //Mandamos la redirección
-        response.sendRedirect("formularioSocio.jsp");
+        response.sendRedirect("añadirEntreno.jsp");
     }
 %>
 

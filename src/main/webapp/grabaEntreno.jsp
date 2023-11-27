@@ -36,12 +36,12 @@
         ubicacion = request.getParameter("ubi");
 
         //Validacion de tipoEntreno
-        Objects.requireNonNull(request.getParameter("tipoEntreno"));
+        Objects.requireNonNull(request.getParameter("select"));
         flagValidaTipoEntrenoNull=true;
 
-        if (request.getParameter("tipoEntreno").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
+        if (request.getParameter("select").isBlank()) throw new RuntimeException("Parámetro vacío o todo espacios blancos.");
         flagValidaTipoEntrenoBlank = true;
-        tipoEntreno = request.getParameter("tipoEntreno");
+        tipoEntreno = request.getParameter("select");
 
         Objects.requireNonNull(request.getParameter("fecha"));
         flagValidaFechaNull = true;

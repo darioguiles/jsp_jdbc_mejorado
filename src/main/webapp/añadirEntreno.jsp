@@ -15,8 +15,8 @@
 <form method="get" action="grabaEntreno.jsp">
     Nº Entreno <input type="text" name="numero"/></br>
     Tipo entreno <select name="select">
-    <option value="value1">físico</option>
-    <option value="value2" selected>técnico</option>
+    <option value="1">físico</option>
+    <option value="2" selected>técnico</option>
 </select>
     </br>
     Ubicacion <input type="text" name="ubi"/></br>

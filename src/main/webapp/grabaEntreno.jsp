@@ -129,6 +129,7 @@
         }
 
         out.println("Entrenamiento creado.");
+        out.println("<a href=\"index.jsp\">Volver atrás</a>");
     } else {
         //out.println("Error de validación!");
         //Mandamos la redirección

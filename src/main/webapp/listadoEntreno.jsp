@@ -31,7 +31,7 @@
     %>
     <td>
         <form method="get" action="borraEntreno.jsp">
-            <input type="hidden" name="codigo" value="<%=listado.getString("entrenoID") %>"/>
+            <input type="hidden" name="codigoE" value="<%=listado.getString("entrenoID") %>"/>
             <input type="submit" value="borrar">
         </form>
     </td></tr>

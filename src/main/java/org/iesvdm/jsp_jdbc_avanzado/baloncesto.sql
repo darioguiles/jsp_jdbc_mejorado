@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `entrenamiento` (
                                        `entrenoID` int(11) NOT NULL AUTO_INCREMENT,
                                        `tipoEntreno` varchar(30) COLLATE utf8_spanish2_ci DEFAULT NULL,
                                        `ubicacion` varchar(30) DEFAULT NULL,
-                                       `fecha` DATE COLLATE utf8_spanish2_ci DEFAULT NULL,
+                                       `fecha` varchar(30) COLLATE utf8_spanish2_ci DEFAULT NULL,
                                        PRIMARY KEY (`entrenoID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 -- INSERT INTO `entrenamiento` (`entrenoID`, `tipoEntreno`, `ubicacion`, `fecha`) VALUES

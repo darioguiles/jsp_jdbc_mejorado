@@ -5,23 +5,14 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Exámen ud2!" %>
 </h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="partidoForm.jsp">Crear Partido (Falta controlar Date SQL)</a>
 <br>
-<a href="mostrarSocio.jsp">MostrarSocioID (Hecho)</a>
+<a href="listadoPartidos.jsp">Borrar Partido (Boton borrar en lista partidos) (Funciona)</a>
 <br>
-<a href="listadoSocios.jsp">Listado de Socios</a>
+<a href="listadoPartidos.jsp">Ver Partidos</a>
 <br>
-<a href="formularioSocio.jsp">Fomulario de Socio Nuevo (Hecho)</a>
-<br>
-<a href="pideNumeroSocio.jsp">Listado de Socios (Borrar)</a>
-<br>
-<a href="añadirEntreno.jsp">Formulario de entreno</a>
-<br>
-<a href="listadoEntreno.jsp">Listado de Entrenos(Borrar)</a>
-
 
 
 </body>

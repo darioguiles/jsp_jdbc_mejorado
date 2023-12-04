@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Mostrar Socio</title>
-    <link rel="stylesheet" type="text/css" href="estilos.css" />
+    <link rel="stylesheet" type="text/css" href="../estilos.css" />
 
 </head>
 <body>
@@ -63,7 +63,7 @@
     %>
 </table>
 
-<a href="index.jsp">Volver a la pagina principal</a>
+<a href="../index.jsp">Volver a la pagina principal</a>
 
 </body>
 </html>

@@ -17,21 +17,25 @@
     Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/baloncesto","user", "user");
     Statement s = conexion.createStatement();
 
-    ResultSet listado = s.executeQuery ("SELECT * FROM entrenamiento");
+    ResultSet listado = s.executeQuery ("SELECT * FROM juego.partido");
 %>
 <table>
-    <tr><th>Código</th><th>Tipo</th><th>Ubicacion</th><th>Fecha</th></tr>
+    <tr><th>ID</th><th>E1</th><th>PtsE1</th><th>E2</th><th>Pts E2</th><th>Fecha</th><th>Tipo Partido</th></tr>
     <%
         while (listado.next()) {
             out.println("<tr><td>");
-            out.println(listado.getString("entrenoID") + "</td>");
-            out.println("<td>" + listado.getString("tipoEntreno") + "</td>");
-            out.println("<td>" + listado.getString("ubicacion") + "</td>");
+            out.println(listado.getString("id") + "</td>");
+            out.println("<td>" + listado.getString("equipo1") + "</td>");
+            out.println("<td>" + listado.getString("puntos_equipo1") + "</td>");
+            out.println("<td>" + listado.getString("equipo2") + "</td>");
+            out.println("<td>" + listado.getString("puntos_equipo2") + "</td>");
             out.println("<td>" + listado.getString("fecha") + "</td>");
+            out.println("<td>" + listado.getString("tipo_partido") + "</td>");
+
     %>
     <td>
-        <form method="get" action="borraEntreno.jsp">
-            <input type="hidden" name="codigoE" value="<%=listado.getString("entrenoID") %>"/>
+        <form method="get" action="borraPartido.jsp">
+            <input type="hidden" name="codigo" value="<%=listado.getString("id") %>"/>
             <input type="submit" value="borrar">
         </form>
     </td></tr>
